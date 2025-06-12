@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import TableWrapper from "../../components/form/input/TableWrapper";
 import Button from "../ui/button/Button";
 import PageBreadcrumbWrapper from "../common/PageBreabCrumbWrapper";
-import { useModal } from "../../hooks/useModal"
+import { useModal } from "../hooks/useModal"
 import { IsactiveactionType } from "../common/Enum";
 import { Link } from "react-router";
 import { useNavigate } from 'react-router-dom';
@@ -93,9 +93,9 @@ const ViewCompanyProfile: React.FC = () => {
     if (selectedCompanyId && actionType) {
       try {
         if (actionType === IsactiveactionType.activate) {
-           await apiClient.activeCompanyprofile(selectedCompanyId);
+          await apiClient.activeCompanyprofile(selectedCompanyId);
         } else if (actionType === IsactiveactionType.deactivate) {
-           await apiClient.deactivateCompanyprofile(selectedCompanyId);
+          await apiClient.deactivateCompanyprofile(selectedCompanyId);
         }
         fetchCompanyProfile();
       } catch (error: any) {
@@ -106,8 +106,8 @@ const ViewCompanyProfile: React.FC = () => {
   };
 
   const handleRowClick = (row: any) => {
-  navigate(`/home/companyprofile/edit/${row.id}`);
-};
+    navigate(`/home/companyprofile/edit/${row.id}`);
+  };
 
   const actionColumn = (row: any) => {
     if (row.index && row.id) {
@@ -146,9 +146,8 @@ const ViewCompanyProfile: React.FC = () => {
       selector: (row: any) => (
         <span
           onClick={() => handleRowClick(row)}
-          className={`cursor-pointer ${
-            row.isactive ? "text-blue-500" : "text-gray-400 cursor-not-allowed"
-          }`}
+          className={`cursor-pointer ${row.isactive ? "text-blue-500" : "text-gray-400 cursor-not-allowed"
+            }`}
         >
           {row.companyIdentificationNumber}
         </span>
@@ -238,7 +237,7 @@ const ViewCompanyProfile: React.FC = () => {
       </Modal>
     </div>
 
-    
+
   );
 };
 
