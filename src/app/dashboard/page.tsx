@@ -1,12 +1,24 @@
 'use client';
 
 import MdCards from "../wrapperComponents/mdCard";
+import MdCardWithArrow from "../wrapperComponents/mdCardWithArrow";
 import MdCardWithImage from "../wrapperComponents/mdCardWithImage";
 import SmCards from "../wrapperComponents/smCards";
 
 export default function DashboardPage() {
     return (
-        <div>
+        <div className="space-y-6">
+            <div className="flex grid grid-cols-12 gap-4 ">
+                <div className="col-span-2 font-bold text-2xl">
+                    <p>Reports</p>
+                </div>
+                <div className="col-span-9" />
+                <div className="justify-end item-center ">
+                    <p>Download</p>
+                </div>
+
+            </div>
+            <hr></hr>
             <div className="grid grid-cols-12 gap-4 md:gap-6">
                 {/* Left Side Cards */}
                 <div className="col-span-12 xl:col-span-6 space-y-6">
@@ -48,6 +60,13 @@ export default function DashboardPage() {
                 </div>
                 <div className="col-span-6">
                     <MdCardWithImage title="Strongest Topics" />
+                </div>
+            </div> <div className="grid grid-cols-12 gap-2">
+                <div className="col-span-6">
+                    <MdCardWithArrow title="Users Leaderboard" />
+                </div>
+                <div className="col-span-6">
+                    <MdCardWithArrow title="Groups Leaderboard" />
                 </div>
             </div>
         </div>

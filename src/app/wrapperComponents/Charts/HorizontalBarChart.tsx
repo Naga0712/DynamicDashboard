@@ -1,16 +1,30 @@
 'use client';
+
 import TypedApexChart from "./TypedApexChart";
 
-export default function HorizontalBarChart() {
+export default function HorizontalBarWithImageLabels() {
     const series = [
         {
             name: "Completion",
-            data: [85, 70, 60, 90, 75],
+            data: [85, 70, 60],
         },
     ];
 
+    const categories = ['React', 'Next.js', 'Node.js'];
+    const imageUrls = [
+        '/Micky_mouse.jpg',
+        '/Micky_mouse.jpg',
+        '/Micky_mouse.jpg',
+    ];
+
     return (
-        <div className="w-full max-w-2xl mx-auto bg-white p-4 rounded-xl shadow">
+        <div className="relative w-full max-w-2xl mx-auto p-4 ">
+            <div className="absolute top-[52px] left-0 flex flex-col gap-[40px] z-10">
+                {imageUrls.map((url, i) => (
+                    <img key={i} src={url} alt={categories[i]} className="w-6 h-6 ml-1" />
+                ))}
+            </div>
+
             <TypedApexChart
                 type="bar"
                 series={series}
@@ -23,32 +37,22 @@ export default function HorizontalBarChart() {
                         bar: {
                             horizontal: true,
                             borderRadius: 6,
-                            barHeight: '60%',
+                            barHeight: '40%',
                         },
                     },
                     dataLabels: {
                         enabled: true,
                         formatter: (val) => `${val}%`,
-                        style: {
-                            fontSize: '12px',
-                            colors: ['#333'],
-                        },
-                    },
-                    xaxis: {
-                        categories: ['React', 'Next.js', 'Node.js'],
-                        max: 100, // since values are in percentage
-                        labels: {
-                            formatter: (val) => `${val}%`,
-                        },
-                        title: {
-                            text: '',
-                        },
                     },
                     yaxis: {
                         labels: {
-                            style: {
-                                fontSize: '14px',
-                            },
+                            show: false,
+                        },
+                    },
+                    xaxis: {
+                        max: 100,
+                        labels: {
+                            formatter: (val) => `${val}%`,
                         },
                     },
                     tooltip: {
@@ -56,14 +60,13 @@ export default function HorizontalBarChart() {
                             formatter: (val) => `${val}%`,
                         },
                     },
-                    colors: ['#3b82f6'],
                     grid: {
                         borderColor: '#e5e7eb',
                         strokeDashArray: 4,
                     },
+                    colors: ['#3b82f6'],
                 }}
-            // width="100%"
-            // height={320}
+                height={240}
             />
         </div>
     );

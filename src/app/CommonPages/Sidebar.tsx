@@ -4,8 +4,9 @@ import { usePathname } from 'next/navigation'
 import { useSidebar } from './SidebarContext'
 
 const navItems = [
+
+    { name: 'Reports', path: '/dashboard', icon: '📊' },
     { name: 'Home', path: '/home', icon: '🏠' },
-    { name: 'Dashboard', path: '/dashboard', icon: '📊' }
 ]
 
 export default function Sidebar() {
@@ -13,23 +14,19 @@ export default function Sidebar() {
     const pathname = usePathname()
 
     return (
-        <aside className={`bg-gray-800 text-white h-screen p-4 ${isExpanded ? 'w-64' : 'w-16'} transition-all`}>
-            <button
-                onClick={toggleSidebar}
-                className="text-white mb-6 bg-gray-700 px-2 py-1 rounded hover:bg-gray-600"
-            >
-                {isExpanded ? '<' : '☰'}
-            </button>
+        <aside className={`bg-white text-black h-screen p-4 ${isExpanded ? 'w-64' : 'w-16'} transition-all`}>
+
+            <img src="/TeslaImage.png" className='w-64' />
 
             <nav className="space-y-2">
                 {navItems.map(item => (
                     <Link
                         key={item.path}
                         href={item.path}
-                        className={`flex items-center p-2 rounded hover:bg-gray-700 ${pathname === item.path ? 'bg-gray-700' : ''}`}
+                        className={`flex items-center p-2 rounded hover:bg-blue-100 ${pathname === item.path ? 'bg-blue-100' : ''}`}
                     >
                         <span className="text-xl">{item.icon}</span>
-                        {isExpanded && <span className="ml-4">{item.name}</span>}
+                        {isExpanded && <span className="ml-4 text-black">{item.name}</span>}
                     </Link>
                 ))}
             </nav>
