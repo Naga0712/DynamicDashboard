@@ -13,7 +13,7 @@ export default function mdCardWithArrow({ title }: mdCardsProps) {
             <div className="flex justify-start py-5">
                 <img src="/Micky_mouse.jpg" className="w-12 h-12 rounded-3xl" />
                 <div className="px-3">
-                    <p>Micky Mouse</p>
+                    <p className="font-bold">Micky Mouse</p>
                     <p>637 Points - 98% Correct</p>
                 </div>
             </div>

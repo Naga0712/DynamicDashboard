@@ -1,5 +1,6 @@
 'use client';
 
+import Select from "../components/form/Select";
 import MdCards from "../wrapperComponents/mdCard";
 import MdCardWithArrow from "../wrapperComponents/mdCardWithArrow";
 import MdCardWithImage from "../wrapperComponents/mdCardWithImage";
@@ -19,6 +20,35 @@ export default function DashboardPage() {
 
             </div>
             <hr></hr>
+            <div className="flex grid grid-cols-12 gap-4 ">
+                <div className="col-span-4 bg-white">
+                    <Select
+                        options={[]}
+                        placeholder="Timeframe: All-Time"
+                        onChange={function (value: any): void {
+                            throw new Error("Function not implemented.");
+                        }}
+                    />
+                </div>
+                <div className="col-span-4 bg-white">
+                    <Select
+                        options={[]}
+                        placeholder="Pepole: All"
+                        onChange={function (value: any): void {
+                            throw new Error("Function not implemented.");
+                        }}
+                    />
+                </div>
+                <div className="col-span-4 bg-white">
+                    <Select
+                        options={[]}
+                        placeholder="Topic: All"
+                        onChange={function (value: any): void {
+                            throw new Error("Function not implemented.");
+                        }}
+                    />
+                </div>
+            </div>
             <div className="grid grid-cols-12 gap-4 md:gap-6">
                 {/* Left Side Cards */}
                 <div className="col-span-12 xl:col-span-6 space-y-6">
