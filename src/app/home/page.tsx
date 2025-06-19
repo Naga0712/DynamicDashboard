@@ -1,38 +1,38 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBox from "../components/form/input/SearchBox";
 import TableWrapper from "../components/form/input/TableWrapper";
 import Button from "../components/ui/button/Button";
 import { Modal } from "../components/ui/modal";
 import { useModal } from "../components/hooks/useModal";
 import HomeDetails from "./homeDetails";
-import Input from "../components/form/input/InputField";
+import api from "../lib/axios";
 
 export default function HomePage() {
 
     const [searchValue, setSearchValue] = useState<string>("");
     const { isOpen, openModal, closeModal } = useModal();
+    const [users, setPosts] = useState<any>();
 
-    const column = [
+    useEffect(() => {
+        api.get('/users') // calls https://jsonplaceholder.typicode.com/posts
+            .then((res) => setPosts(res.data.slice(0, 10))) // limit to 10 posts
+            .catch((err) => console.error('Failed to fetch posts:', err));
+    }, []);
+
+    const columns = [
         {
-            key: "name",
-            name: "Name",
+            key: 'title',
+            name: 'Title',
             selector: (row: any) => row.name,
             sortable: true,
         },
         {
-            key: "email",
-            name: "Email",
-            selector: (row: any) => row.email,
-            sortable: true,
+            key: 'body',
+            name: 'Content',
+            selector: (row: any) => row.username,
         },
-    ];
-
-    const data = [
-        { id: 1, name: "Alice", email: "alice@example.com" },
-        { id: 2, name: "Bob", email: "bob@example.com" },
-        { id: 3, name: "Charlie", email: "charlie@example.com" },
     ];
 
     const handleSearch = (e: any) => {
@@ -63,7 +63,7 @@ export default function HomePage() {
                     <Button className="bg-red-500 text-white" onClick={() => handleCancel()}>Cancel</Button>
                 </div>
             </div>
-            <TableWrapper column={column} renderData={data} showCheckboxes={false} />
+            <TableWrapper column={columns} renderData={users} showCheckboxes={false} />
             {isOpen && (
                 <div>
                     <Modal
@@ -72,7 +72,7 @@ export default function HomePage() {
                         className="max-w-[600px] p-6 lg:p-10"
                     >
                         <HomeDetails
-                            data={data || []}
+                            data={users || []}
                         />
                     </Modal>
                 </div>)}
